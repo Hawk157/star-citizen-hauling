@@ -1,0 +1,352 @@
+/* App.css - Style inspiré de Star Citizen */
+
+:root {
+  --bg: #0a0d12;
+  --panel: #13181f;
+  --accent: #00c2ff;
+  --accent-light: #66e0ff;
+  --text: #d0d6e1;
+  --border: #1f2a36;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.app-container {
+  max-width: 1400px;
+  margin: auto;
+  padding: 2rem;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--accent);
+  font-size: 2rem;
+  letter-spacing: 2px;
+}
+
+/* Bloc pour la sélection du vaisseau */
+.ship-selection {
+  background-color: var(--panel);
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  width: 350px;
+}
+
+.ship-selection label {
+  color: var(--accent-light);
+  margin-right: 1rem;
+}
+
+.ship-selection select {
+  background-color: #0e141a;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  margin-right: 1rem;
+  width: 300px;
+  min-width: 300px;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.ship-selection select:focus {
+  outline: 2px solid var(--accent);
+}
+
+.ship-capacity {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: var(--accent-light);
+  font-weight: bold;
+}
+
+/* Nouveau résumé des lieux de chargement (phrases) */
+.summary-section {
+  background-color: var(--panel);
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+.summary-section h2 {
+  color: var(--accent-light);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.summary-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.summary-line, .summary-line-dechargement {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  margin-bottom: 0.5rem;
+  background-color: #0e1218;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+}
+
+.summary-line span, .summary-line-dechargement span {
+  padding-left: 0;
+  margin-right: auto;
+}
+
+/* Ajout d'une flèche au début de chaque ligne d'opération */
+.summary-line::before,
+.summary-line-dechargement::before {
+  content: "➤";
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin-right: 1rem;
+}
+
+/* Boutons dans le résumé (même style que suppression) */
+.line-controls {
+  display: flex;
+  gap: 0.25rem;
+  margin-left: 1rem;
+}
+
+.line-controls button {
+  background-color: #111;
+  color: #fff;
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+}
+
+.line-controls button:hover {
+  background-color: #a2a2a2;
+}
+
+/* Boutons généraux */
+button {
+  padding: 0.5rem 1rem;
+  background-color: var(--accent);
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: inherit;
+  margin-top: 1rem;
+}
+
+button:hover {
+  background-color: var(--accent-light);
+}
+
+/* Champs de formulaire */
+select,
+input[type="text"],
+input[type="number"] {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  background-color: #0e141a;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+  width: 175px;
+  min-width: 175px;
+  box-sizing: border-box;
+}
+
+select:focus,
+input:focus {
+  outline: 2px solid var(--accent);
+}
+
+/* Bloc pour chaque contrat */
+.contract-block {
+  background-color: var(--panel);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border-radius: 10px;
+}
+
+.contract-block h3 {
+  margin-top: 0;
+  color: var(--accent-light);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+/* Ligne de contrat compacte */
+.line-block {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: #0e1218;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Aligner le bouton de suppression avec les autres éléments */
+.delete-line-button {
+  background-color: #111;
+  color: #fff;
+  padding: 0.4rem 0.6rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: auto;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  margin-top: 0px;
+}
+
+.delete-line-button:hover {
+  background-color: #a2a2a2;
+}
+
+.delete-line-button:focus {
+  outline: none;
+}
+
+.line-block h4 {
+  display: none;
+}
+
+/* Bouton Valider dans chaque ligne de contrat */
+.validate-line-button {
+  background-color: #28a745;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 1rem;
+  margin-top: 0px;
+}
+
+.validate-line-button:hover {
+  background-color: #218838;
+}
+
+.validate-line-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Ajouter un peu d'espace entre les boutons */
+.line-block button {
+  margin-right: 0.5rem;
+}
+
+/* Boutons monter/descendre avec flèches ▲ ▼ */
+.move-up-button,
+.move-down-button {
+  background-color: #111;
+  color: #fff;
+  padding: 0.4rem 0.6rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  margin-top: 0px;
+}
+
+.move-up-button:hover,
+.move-down-button:hover {
+  background-color: #a2a2a2;
+}
+
+.move-up-button:focus,
+.move-down-button:focus {
+  outline: none;
+}
+
+.move-up-button::before {
+  content: "▲";
+  font-size: 0.9rem;
+}
+
+.move-down-button::before {
+  content: "▼";
+  font-size: 0.9rem;
+}
+
+/* Aligner les boutons "Monter" et "Descendre" à droite de la ligne */
+.move-buttons {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.cargo-info {
+  margin-top: 4px;
+  font-size: 0.95em;
+}
+
+.over-capacity {
+  color: red;
+  font-weight: bold;
+}
+
+.warning-text {
+  margin-left: 8px;
+  color: red;
+  font-weight: bold;
+}
+
+/* Appliquer une largeur fixe de 300px aux menus déroulants */
+.custom-select {
+  width: 150px;
+  min-width: 150px;
+  box-sizing: border-box;
+}
+
+.checkbox-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
