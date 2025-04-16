@@ -150,24 +150,24 @@ function App() {
       <h1>Star Citizen Hauling Planner</h1>
 
       <div className="ship-selection">
-        <label htmlFor="ship-select">Sélectionner un vaisseau :</label>
+        <label htmlFor="ship-select">Select a ship :</label>
         <Select
           id="ship-select"
           options={getShipOptions()}
           onChange={handleShipChange}
-          placeholder="Sélectionner un vaisseau"
+          placeholder="Select a ship"
           styles={customSelectStyle}
         />
-        {selectedShip && <div className="ship-capacity">Capacité : {shipCapacity} SCU</div>}
+        {selectedShip && <div className="ship-capacity">Capacity : {shipCapacity} SCU</div>}
       </div>
 
       <div className="cargo-info">
-        <h2>Cargo en soute: {loadedCargo} SCU</h2>
-        {loadedCargo > shipCapacity && <div className="over-capacity">Attention: Capacité excédée!</div>}
+        <h2>Loaded Cargo: {loadedCargo} SCU</h2>
+        {loadedCargo > shipCapacity && <div className="over-capacity">Warming: Capacity exceeded!</div>}
       </div>
 
       <div className="summary-section">
-        <h2>Résumé des opérations</h2>
+        <h2>Summary</h2>
         <ul className="summary-list">
           {summaryLines.length ? summaryLines.map((step, i) => {
             const totalLoad = step.lines
@@ -186,33 +186,30 @@ function App() {
                   <h3>{step.loadingPlace}</h3>
                   <ul>
                     {step.lines.map((lineEntry, j) => (
-  <li key={j} className="summary-line" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-    <span>{lineEntry.text}</span>
-    <label style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-      {lineEntry.type === 'unloading' ? 'Livré' : 'Chargé'}
-      <input
-        type="checkbox"
-        checked={lineEntry.isCargoInHold}
-        onChange={(e) => handleCargoInHoldChange(i, j, e.target.checked)}
-      />
-    </label>
-  </li>
-))}
-
+                      <li key={j} className="summary-line" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <span>{lineEntry.text}</span>
+                          <label style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                          {lineEntry.type === 'unloading' ? 'Livré' : 'Chargé'}
+                            <input
+                              type="checkbox"
+                              checked={lineEntry.isCargoInHold}
+                              onChange={(e) => handleCargoInHoldChange(i, j, e.target.checked)}
+                            />
+                          </label>
+                      </li>
+                    ))}
                   </ul>
                   {isOverloaded && (
                     <div style={{ color: 'red', fontWeight: 'bold', marginTop: '10px' }}>
-                      ⚠️ Capacité excédée à cette étape ({totalLoad} SCU > {shipCapacity} SCU)
+                      ⚠️ Capacity exceeded at this step ! ({totalLoad} SCU > {shipCapacity} SCU)
                     </div>
                   )}
                 </div>
               </li>
             );
-          }) : <li>Aucune ligne pour le moment.</li>}
+          }) : <li>No line for now. Please add contract...</li>}
         </ul>
       </div>
-
-      {/* Le reste du code reste inchangé */}
       {contracts.map((contract, ci) => (
         <div key={contract.id} className="contract-block">
           <h3>Contrat #{contract.id}</h3>
@@ -222,14 +219,14 @@ function App() {
                 value={line.loadingPlace ? { value: line.loadingPlace, label: line.loadingPlace } : null}
                 onChange={(e) => updateLineDetail(ci, li, 'loadingPlace', e.value)}
                 options={getSelectOptions(loadingPlaces)}
-                placeholder="Lieu de chargement"
+                placeholder="Loading Area"
                 isDisabled={line.isValid}
                 styles={customSelectStyle}
               />
 
               <input
                 type="text"
-                placeholder="Quantité"
+                placeholder="Quantity"
                 value={line.quantity}
                 onChange={(e) => updateLineDetail(ci, li, 'quantity', e.target.value)}
                 disabled={line.isValid}
@@ -239,7 +236,7 @@ function App() {
                 value={line.resourceType ? { value: line.resourceType, label: line.resourceType } : null}
                 onChange={(e) => updateLineDetail(ci, li, 'resourceType', e.value)}
                 options={getSelectOptions(resourceTypes)}
-                placeholder="Ressource"
+                placeholder="Item"
                 isDisabled={line.isValid}
                 styles={customResourceSelectStyle}
               />
@@ -253,7 +250,7 @@ function App() {
                 styles={customSelectStyle}
               />
 
-              <button className="validate-line-button" onClick={() => validateLine(ci, li)} disabled={line.isValid}>Valider</button>
+              <button className="validate-line-button" onClick={() => validateLine(ci, li)} disabled={line.isValid}>Confirm</button>
               <button className="delete-line-button" onClick={() => removeLine(ci, li)}>✖</button>
             </div>
           ))}
