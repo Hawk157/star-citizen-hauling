@@ -84,20 +84,20 @@ function App() {
 
       addOrUpdateStep(
         line.loadingPlace,
-        `Chargez ${line.quantity} SCU de ${line.resourceType} à destination de ${line.destination} (Contrat #${contractIdx + 1})`,
+        `Load ${line.quantity} SCU of ${line.resourceType} to deliver at ${line.destination} (Contrat #${contractIdx + 1})`,
         line,
         'loading'
       );
       addOrUpdateStep(
         line.destination,
-        `Déchargez ${line.quantity} SCU de ${line.resourceType} en provenance de ${line.loadingPlace} (Contrat #${contractIdx + 1})`,
+        `Unload ${line.quantity} SCU of ${line.resourceType} coming from ${line.loadingPlace} (Contrat #${contractIdx + 1})`,
         line,
         'unloading'
       );
 
       setSummaryLines(newSummary);
     } else {
-      alert('Veuillez remplir tous les champs avant de valider.');
+      alert('Please fill all data before pressing "Confirm"');
     }
   };
 
